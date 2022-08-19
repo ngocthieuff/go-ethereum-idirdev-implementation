@@ -9,17 +9,22 @@ import (
 )
 
 var infuraUrl = "https://mainnet.infura.io/v3/c1f511c8b9ed45f095ef00b69e87b758"
+var ganacheUrl = "http://localhost:8545"
 
 func main() {
 
 	// Background returns a non-nil, empty Context.
 	// It is never canceled, has no values, and has no deadline.
 	// It is typically used by the main function, initialization, and tests, and as the top-level Context for incoming requests.
-	client, err := ethclient.DialContext(context.Background(), infuraUrl)
+	// client, err := ethclient.DialContext(context.Background(), infuraUrl)
+
+	// ganache is local blockchain
+	// use ganacheUrl for interaction with local blockchain
+	client, err := ethclient.DialContext(context.Background(), ganacheUrl)
 
 	if err != nil {
 		// %v verb means to use the default format which can be overridden
-		log.Fatal("Error to create a ether client: %v, err")
+		log.Fatal("Error to create a ether client: %v", err)
 	}
 
 	defer client.Close()
