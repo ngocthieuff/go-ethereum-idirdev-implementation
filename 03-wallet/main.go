@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
 )
 
@@ -13,6 +14,14 @@ func main() {
 		log.Fatal("Error generating key:", err)
 	}
 
-	pData := crypto.FromECDSA(pvk)
-	fmt.Println(pData)
+	// Private key
+	prvData := crypto.FromECDSA(pvk)
+	fmt.Println(hexutil.Encode(prvData))
+
+	// Public key
+	pubData := crypto.FromECDSAPub(&pvk.PublicKey)
+	fmt.Println(hexutil.Encode(pubData))
+
+	// Public address
+	fmt.Println(crypto.PubkeyToAddress(pvk.PublicKey).Hex())
 }
