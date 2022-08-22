@@ -11,7 +11,7 @@ import (
 // import (
 // 	"log"
 
-// 	// "github.com/ethereum/go-ethereum/accounts/keystore"
+// 	"github.com/ethereum/go-ethereum/accounts/keystore"
 // )
 
 var (
@@ -30,19 +30,26 @@ func main() {
 	// if err != nil {
 	// 	log.Fatal("Error in generating: ", err)
 	// }
+	// _, err1 := key.NewAccount(password)
+	// if err1 != nil {
+	// 	log.Fatal("Error in generating: ", err)
+	// }
 	// run 02 times go run main.go for generating 02 files UTC--
-	// b3ab37b783d5e18fae4915104826823d5eece8eb
-	// 41bcefc86c5756a49261909d8a91733fe9c1c1b3
+	// b052ea54b934ea996de291694e3ec337ce1288de
+	// 9e9c8e9b9fd5a0e3ace06a12b09cccc3372eedcb
+	// !!! Notes: add 0x prefix for searching and sending eth for testing
+	// Like: 0x9e9c8e9b9fd5a0e3ace06a12b09cccc3372eedcb
+	// Get Kovan Network eth for testing at: https://ethdrop.dev/
 	// ----------------------------------------------------------------------------------------------
 
-	client, err := ethclient.Dial(mUrl)
+	client, err := ethclient.Dial(url)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer client.Close()
 
-	address1 := common.HexToAddress("b3ab37b783d5e18fae4915104826823d5eece8eb")
-	address2 := common.HexToAddress("41bcefc86c5756a49261909d8a91733fe9c1c1b3")
+	address1 := common.HexToAddress("0x9e9c8e9b9fd5a0e3ace06a12b09cccc3372eedcb")
+	address2 := common.HexToAddress("0xb052ea54b934ea996de291694e3ec337ce1288de")
 
 	balance1, err := client.BalanceAt(context.Background(), address1, nil)
 	if err != nil {
