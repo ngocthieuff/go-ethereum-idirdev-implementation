@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 
 	"github.com/ethereum/go-ethereum/common"
@@ -55,11 +56,11 @@ func main() {
 	if err != nil {
 		log.Fatal("Get balance at address 01: ", err)
 	}
-	println("Balance 01: ", balance1)
+	fmt.Println("Balance 01: ", balance1)
 
 	balance2, err := client.BalanceAt(context.Background(), address2, nil)
 	if err != nil {
 		log.Fatal("Get balance at address 02: ", err)
 	}
-	println("Balance 02: ", balance2)
+	fmt.Println("Balance 02: ", balance2)
 }
